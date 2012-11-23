@@ -1,0 +1,10 @@
+CACHE MANIFEST
+# version 2012-11-13_2058
+
+/game/scripts/canvas.js
+/game/scripts/debug.js
+/game/scripts/engine.js
+/game/scripts/loader.js
+/game/scripts/modernizr.js
+/game/scripts/sizzle.js
+/game/styles/main.css
