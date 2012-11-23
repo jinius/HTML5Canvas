@@ -4,77 +4,86 @@ game.canvas = (function() {
 		return Modernizr.canvas;
 	}
 
-	function selectScreen(screenId)
+	function selectScreen(viewScreenId, hideScreenId)
 	{
-		var screen = document.getElementById(screenId);
-		this.selectedScreen = screen;
+		var viewScreen = document.getElementById(viewScreenId);
+		var hideScreen = document.getElementById(hideScreenId);
+		this.viewScreen = viewScreen;
+		this.hideScreen = hideScreen;
+
+		this.hideContext = hideScreen.getContext('2d');
 	}
 
 	function initScreen()
 	{
-		var screen = this.selectedScreen;
+		var screen = this.hideScreen;
 
 		var style = document.defaultView.getComputedStyle(screen, null);
 		screen.width = parseInt(style.width);
 		screen.height = parseInt(style.height);
+
+		this.hideContext = screen.getContext('2d');
 	}
 
 	function drawLogoScreen()
 	{
-		var context = this.selectedScreen.getContext('2d');
+		var context = this.hideContext;
 
 		context.fillStyle='red';
-		context.fillRect(0, 0, 10, 10);
-		context.fillRect(0, 100, 10, 10);
-		context.fillRect(0, 200, 10, 10);
-		context.fillRect(0, 300, 10, 10);
-		context.fillRect(100, 0, 10, 10);
-		context.fillRect(100, 100, 10, 10);
-		context.fillRect(100, 200, 10, 10);
-		context.fillRect(100, 300, 10, 10);
-		context.fillRect(200, 0, 10, 10);
-		context.fillRect(200, 100, 10, 10);
-		context.fillRect(200, 200, 10, 10);
-		context.fillRect(200, 300, 10, 10);
-		context.fillRect(300, 0, 10, 10);
-		context.fillRect(300, 100, 10, 10);
-		context.fillRect(300, 200, 10, 10);
-		context.fillRect(300, 300, 10, 10);
-		context.fillRect(400, 0, 10, 10);
-		context.fillRect(400, 100, 10, 10);
-		context.fillRect(400, 200, 10, 10);
-		context.fillRect(400, 300, 10, 10);
-
 		context.fillText("Infinibolt Logo", 125, 120);
 	}
 
 	function drawScreen()
 	{
-		var context = this.selectedScreen.getContext('2d');
+		var context = this.hideContext;
+
 		context.fillStyle='red';
+		context.fillRect(0, 0, 10, 10);
+		context.fillRect(100, 0, 10, 10);
+		context.fillRect(200, 0, 10, 10);
+		context.fillRect(300, 0, 10, 10);
+		context.fillRect(0, 100, 10, 10);
+		context.fillRect(100, 100, 10, 10);
+		context.fillRect(200, 100, 10, 10);
+		context.fillRect(300, 100, 10, 10);
+		context.fillRect(0, 200, 10, 10);
+		context.fillRect(100, 200, 10, 10);
+		context.fillRect(200, 200, 10, 10);
+		context.fillRect(300, 200, 10, 10);
+		context.fillRect(0, 300, 10, 10);
+		context.fillRect(100, 300, 10, 10);
+		context.fillRect(200, 300, 10, 10);
+		context.fillRect(300, 300, 10, 10);
+		context.fillRect(0, 400, 10, 10);
+		context.fillRect(100, 400, 10, 10);
+		context.fillRect(200, 400, 10, 10);
+		context.fillRect(300, 400, 10, 10);
+		context.fillRect(0, 500, 10, 10);
+		context.fillRect(100, 500, 10, 10);
+		context.fillRect(200, 500, 10, 10);
+		context.fillRect(300, 500, 10, 10);
+
 		context.fillText("Game Screen", 125, 120);
 	}
 
 	function showScreen()
 	{
-		if( this.activeScreen )
-			this.activeScreen.style.visibility = 'hidden';
+		var viewScreen = this.hideScreen;
+		var hideScreen = this.viewScreen;
 
-		var screen = this.selectedScreen;
-		screen.style.visibility = 'visible';
+		hideScreen.style.visibility = 'hidden';
+		viewScreen.style.visibility = 'visible';
 
-		this.activeScreen = screen;
-	}
+		this.viewScreen = viewScreen;
+		this.hideScreen = hideScreen;
 
-	function hideScreen()
-	{
-		if( this.activeScreen )
-			this.activeScreen.style.visibility = 'hidden';
+		this.hideContext = hideScreen.getContext('2d');
 	}
 
 	return {
-		activeScreen : null,
-		selectedScreen : null,
+		mainScreen : null,
+		hideScreen : null,
+		hideContext : null,
 		canvasSupport : canvasSupport,
 		selectScreen : selectScreen,
 		initScreen : initScreen,

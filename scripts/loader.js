@@ -1,4 +1,5 @@
 var game = {};
+var server = {};
 
 window.addEventListener("load", function() {
 	Modernizr.load([
