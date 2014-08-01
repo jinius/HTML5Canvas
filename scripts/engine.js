@@ -2,20 +2,23 @@ game.engine = (function() {
 	var canvas = game.canvas;
 
 	function startGame() {
-		game.canvas.selectScreen("game-screen", "logo-screen");
-		game.canvas.initScreen();
-		game.canvas.drawLogoScreen();
-		game.canvas.showScreen();	// TODO: rename to flipScreen()
-		// game.canvas.selectScreen("logo-screen", "game-screen");	// included into flipScreen()
-		game.canvas.initScreen();
-		game.canvas.drawScreen();
-		game.canvas.showScreen();	// TODO: rename to flipScreen()
+		canvas.initScreen( "screen0", "screen1" );
+		canvas.drawScreen( "red", [
+			canvas.drawRect( 150, 150, 100 ),
+			canvas.drawText( 120, 250, "Hello" )
+		]);
+		canvas.showScreen();	// TODO: rename to flipScreen()
 
-//		for( var count = 0; count < 10; count++ )
-		{
-			game.canvas.showScreen();
-			game.canvas.showScreen();
-		}
+		document.getElementById( "game" ).addEventListener( "mousedown", function( event ) {
+			var x = event.offsetX;
+			var y = event.offsetY;
+			canvas.clearScreen();
+			canvas.drawScreen( "yellow", [
+				canvas.drawCircle( x, y, 100 )
+			]);
+			canvas.showScreen();	// TODO: rename to flipScreen()
+
+		}, true );
 
 		// View code scenario : draw map, draw objects, draw ui
 		// called when updated : by frame rate

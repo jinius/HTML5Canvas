@@ -2,7 +2,7 @@
 <html manifest="cache.appcache">
 <head>
 	<meta charset="UTF-8" />
-	<title>AniPang the Puzzle</title>
+	<title>Double-Buffering</title>
 
 	<link rel="stylesheet" href="styles/main.css" />
 
@@ -11,12 +11,16 @@
 </head>
 <body>
 	<div id="game">
-		<canvas class="screen" id="logo-screen">
+		<canvas class="screen" id="screen0">
 			Your browser does not support HTML5 Canvas.
 		</canvas>
-		<canvas class="screen" id="game-screen">
+		<canvas class="screen" id="screen1">
 			Your browser does not support HTML5 Canvas.
 		</canvas>
+		<map name="screen_map">
+			<area shape="rect" coords="100, 100, 200, 200" alt="Rect">
+			<area shape="circle" coords="150, 250, 50" alt="Circle">
+		</map>
 	</div>
 </body>
 </html>
